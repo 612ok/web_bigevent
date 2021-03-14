@@ -20,31 +20,31 @@ $(function() {
     });
 
     // 登录事件
-    $('#login-form').on('submit', function(e) {
-        e.preventDefault();
-        var data = {
-            username: $('#login-form [name=account]').val().trim(),
-            password: $('#login-form [name=password]').val().trim()
-        };
-        $.ajax({
-            method: 'post',
-            url: '/api/login',
-            data,
-            success: function(result) {
-                console.log(result);
-                if (result.status != 0) {
-                    return layer.msg(result.message);
-                }
-                layer.msg(result.message);
-            }
-        });
-    });
+    // $('#login-form').on('submit', function(e) {
+    //     e.preventDefault();
+    //     var data = {
+    //         username: $('#login-form [name=account]').val().trim(),
+    //         password: $('#login-form [name=password]').val().trim()
+    //     };
+    //     $.ajax({
+    //         method: 'post',
+    //         url: '/api/login',
+    //         data,
+    //         success: function(result) {
+    //             console.log(result);
+    //             if (result.status != 0) {
+    //                 return layer.msg(result.message);
+    //             }
+    //             layer.msg(result.message);
+    //         }
+    //     });
+    // });
 
     //注册事件
     $('#regist-form').on('submit', function(e) {
         e.preventDefault();
         var data = {
-            username: $('#regist-form [name=account]').val().trim(),
+            username: $('#regist-form [name=username]').val().trim(),
             password: $('#regist-form [name=password]').val().trim()
         };
         console.log(data);
@@ -62,5 +62,26 @@ $(function() {
             }
         });
     });
+
+    //登录事件
+    $('#login-form').submit(function(e) {
+        //阻止表单默认提交
+        e.preventDefault();
+        console.log($(this).serialize());
+        $.ajax({
+            method: 'post',
+            url: '/api/login',
+            data: $(this).serialize(),
+            success: function(result) {
+                if (result.status != 0)
+                    return layer.msg(result.message);
+
+                //用于有权限请求接口认证
+                localStorage.setItem('token', result.token);
+                location.href = './index.html';
+            }
+        })
+    })
+
 
 });
