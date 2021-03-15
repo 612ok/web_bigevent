@@ -26,6 +26,7 @@ a {
     line-height: 60px;
     text-align: center;
     font-size: 12px;
+    user-select: none;
 }
 
 .layui-side-scroll .userinfo {
@@ -40,7 +41,7 @@ a {
     background-color: #009688;
     line-height: 40px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     position: relative;
     top: 4px;
     margin-right: 10px;
@@ -49,4 +50,13 @@ a {
 .layui-nav-img {
     height: 40px;
     width: 40px;
+    display: none;
+}
+
+.welcome {
+    font-size: 12px;
+}
+
+a {
+    transform: none!important;
 }
