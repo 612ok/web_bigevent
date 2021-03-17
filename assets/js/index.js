@@ -38,12 +38,12 @@ function randerUserInfo(userInfo) {
     $('.welcome').text(name);
     var imgAvater = $('.layui-nav-img');
     var textAvater = $('.text-avater');
-    console.log(userInfo.user_pic);
+
     if (userInfo.user_pic) {
         //渲染图片头像
         imgAvater.show();
         textAvater.hide();
-        imgAvater.src = userInfo.user_pic;
+        imgAvater.attr('src', userInfo.user_pic);
     } else {
         //渲染文字头像
         imgAvater.hide();
